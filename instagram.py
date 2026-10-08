@@ -3,33 +3,45 @@ import csv
 from datetime import datetime
 from itertools import takewhile, dropwhile
 
-# Initialize Instaloader
+
 L = instaloader.Instaloader()
 
-# --- CONFIGURATION ---
-TARGET_PROFILE = "shiftprjct"
-START_DATE = datetime(2022, 10, 1)
-END_DATE = datetime(2023, 1, 14, 23, 59, 59)
+
+TARGET_PROFILE = "ussfeeds"
+START_DATE = datetime(2026, 9, 1)
+END_DATE = datetime(2026, 10, 6)
 
 def scrape_with_date_range():
     try:
         profile = instaloader.Profile.from_username(L.context, TARGET_PROFILE)
         posts = profile.get_posts()
 
-        # Filters: newest to oldest logic
-        filtered_posts = takewhile(lambda p: p.date_utc >= START_DATE, 
-                                   dropwhile(lambda p: p.date_utc > END_DATE, posts))
-
         all_posts = []
         print(f"Fetching posts from {TARGET_PROFILE}...")
 
-        for post in filtered_posts:
-            # SANITY CHECK: If likes are -1, it means Instagram is blocking the data
+        for post in posts:
+            post_date = post.date_utc
+            
+            # 1. Skip posts that are newer than our target end date
+            if post_date > END_DATE:
+                continue
+                
+            # 2. Stop scrolling if we hit a post older than our start date
+            if post_date < START_DATE:
+                # IMPORTANT: Check if it's a pinned post. Pinned posts break the timeline.
+                # If it's pinned, just skip it and keep scrolling. If not, stop the script.
+                if getattr(post, 'is_pinned', False):
+                    continue
+                else:
+                    print(f"Reached posts older than {START_DATE.date()}. Stopping scroll.")
+                    break
+
+            # 3. If the script gets here, the post is perfectly within our date range!
             current_likes = post.likes
             if current_likes == -1:
                 print(f"⚠️ Warning: Likes hidden or blocked for post {post.shortcode}")
             
-            print(f"Processing post: {post.shortcode} ({post.date_utc.date()}) | Likes: {current_likes}")
+            print(f"Processing post: {post.shortcode} ({post_date.date()}) | Likes: {current_likes}")
             
             all_posts.append({
                 "link": f"https://www.instagram.com/p/{post.shortcode}/",
@@ -38,7 +50,7 @@ def scrape_with_date_range():
                 "likes": current_likes,
                 "comments": post.comments,
                 "caption": post.caption,
-                "date": post.date_utc.isoformat()
+                "date": post_date.isoformat()
             })
 
         if not all_posts:
@@ -56,5 +68,7 @@ def scrape_with_date_range():
     except Exception as e:
         print(f"Error: {e}")
 
+
+        
 if __name__ == "__main__":
     scrape_with_date_range()

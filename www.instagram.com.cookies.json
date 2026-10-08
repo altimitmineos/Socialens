@@ -36,24 +36,6 @@
     "secure": true
   },
   {
-    "name": "csrftoken",
-    "value": "8oYtF37AFct09fCGCU8cgIKe3wlEeFnL",
-    "domain": ".instagram.com",
-    "path": "/",
-    "expires": 1806763424.135089,
-    "httpOnly": false,
-    "secure": true
-  },
-  {
-    "name": "ds_user_id",
-    "value": "80667593538",
-    "domain": ".instagram.com",
-    "path": "/",
-    "expires": 1779979424.135435,
-    "httpOnly": false,
-    "secure": true
-  },
-  {
     "name": "ps_l",
     "value": "1",
     "domain": ".instagram.com",
@@ -73,40 +55,58 @@
     "secure": true
   },
   {
-    "name": "wd",
-    "value": "1536x738",
-    "domain": ".instagram.com",
-    "path": "/",
-    "expires": 1772808213,
-    "httpOnly": false,
-    "secure": true,
-    "sameSite": "Lax"
-  },
-  {
     "name": "dpr",
     "value": "1.25",
     "domain": ".instagram.com",
     "path": "/",
-    "expires": 1772808213,
+    "expires": 1781190210,
+    "httpOnly": false,
+    "secure": true
+  },
+  {
+    "name": "csrftoken",
+    "value": "ByS5LBTxGB72myT6c1rQcCXFudAhTzKP",
+    "domain": ".instagram.com",
+    "path": "/",
+    "expires": 1815145407.492383,
     "httpOnly": false,
     "secure": true
   },
   {
     "name": "sessionid",
-    "value": "80667593538%3AOctoq0mSG2wr8i%3A25%3AAYgBaxUd4_62FPzF4srzwOuTnwZsJ_GgMUiNVQ-XAw",
+    "value": "80667593538%3AjqhWQLuzw5MtzX%3A29%3AAYhvT0Ln9F-FVtuMATkRGF0vfZoB7tpsTmYOOt3Lvg",
     "domain": ".instagram.com",
     "path": "/",
-    "expires": 1803739403.090477,
+    "expires": 1812121403.671007,
     "httpOnly": true,
     "secure": true
   },
   {
+    "name": "ds_user_id",
+    "value": "80667593538",
+    "domain": ".instagram.com",
+    "path": "/",
+    "expires": 1788361407.492936,
+    "httpOnly": false,
+    "secure": true
+  },
+  {
     "name": "rur",
-    "value": "\"CCO\\05480667593538\\0541803739423:01fe4bd78f0fab07cab1e469f843833a541482fe4ae6022bdd0e68418ba060a89f692113\"",
+    "value": "\"CCO\\05480667593538\\0541812121407:01ff51c7ac73bc7b133bb24dc354df13cac241a1e7236be620c5a7ad72d52c373721a29a\"",
     "domain": ".instagram.com",
     "path": "/",
     "expires": -1,
     "httpOnly": true,
+    "secure": true,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "wd",
+    "value": "1536x730",
+    "domain": ".instagram.com",
+    "path": "/",
+    "expires": 1781190215,
+    "httpOnly": false,
     "secure": true,
     "sameSite": "Lax"
   }
